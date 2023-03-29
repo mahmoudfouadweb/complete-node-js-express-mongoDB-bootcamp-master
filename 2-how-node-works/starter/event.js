@@ -8,12 +8,11 @@ class Sale extends EventEmitter {
 }
 
 const myEmitter = new Sale();
-
 myEmitter.emit('newSale');
 
 myEmitter.on('mahmoud', () => console.log('There are sale!'));
 
-myEmitter.on('mahmoud', (stock) =>
+myEmitter.on('mahmoud', stock =>
   console.log(`There are no stock but ${stock}`)
 );
 
