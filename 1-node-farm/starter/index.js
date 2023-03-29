@@ -1,7 +1,7 @@
 const fs = require("fs");
 const http = require("http");
 const url = require("url");
-const replaceTemplate = require('./modules/replaceTemplate')
+const replaceTemplate = require("./modules/replaceTemplate");
 // server
 const tempOverview = fs.readFileSync(
   `${__dirname}/templates/template-overview.html`,
@@ -47,7 +47,6 @@ const server = http.createServer((req, res) => {
     res.end("<h1>page not found</h1>");
   }
 });
-
 
 server.listen(3001, "127.0.0.1", () => {
   console.log("The server is running");
