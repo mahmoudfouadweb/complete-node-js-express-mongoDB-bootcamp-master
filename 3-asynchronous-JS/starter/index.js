@@ -18,7 +18,7 @@ const superagent = require("superagent");
 const readFilePro = (file) => {
   return new Promise((resolve, reject) => {
     fs.readFile(file, (err, data) => {
-      if (err) return reject(err.message);
+      if (err) return reject('ERR');
       resolve(data);
     });
   });
@@ -27,7 +27,7 @@ const readFilePro = (file) => {
 const writeFilePro = (file, data) => {
   return new Promise((resolve, rejects) => {
     fs.writeFile(file, data, (err) => {
-      if (err) return rejects(err.message);
+      if (err)  rejects('ERR');
       resolve("Success");
     });
   });
@@ -42,6 +42,10 @@ const writeFilePro = (file, data) => {
 
 const dog = async () => {
   const data = await readFilePro(`${__dirname}/dog.txt`);
-  const res = await superagent.get(`https://dog.ceo/api/breed/${res}/imaes/random`);
-  await writeFilePro(`${__dirname}/`)
+  const res = await superagent.get(
+    `https://dog.ceo/api/breed/${data}/imaes/random`
+  );
+  await writeFilePro(`./dog-image.txt`, res.body.message);
 };
+
+dog();
