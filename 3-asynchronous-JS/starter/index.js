@@ -52,18 +52,40 @@ const writeFilePro = (file, data) =>
 
 // dog();
 
-http.createServer((req, res) => {
-  fs.readFile('/.dog-img.txt', 'utf-8', (err, data) => {
-    if (err) {
-      res.writeHead(500, { 'Content-Type': 'text/plain' });
-      res.end('Internal Server Error');
-    } else {
-      const imgPath = data.trim();
-      // console.log(imgPath);
-      fs.readFile(imgPath)
-      
-    }
+http
+  .createServer((req, res) => {
+    fs.readFile(`${__dirname}/dog-img.txt`, 'utf-8', (err, data) => {
+      if (err) {
+        console.log(err);
+        res.writeHead(500, { 'Content-Type': 'text/html' });
+        res.end('<h1>Internal Server Error</h1>');
+      } else {
+        const imgPath = data.trim();
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(`<img src='${imgPath}'/>`);
+      }
+    });
+  })
+  .listen(8000, 'localhost', () => {
+    console.log('Server Is Running');
   });
-}).listen(8000, 'localhost', () => {
-  console.log('Server Is Running');
-});
+
+(async () => {
+  try {
+    fs.readFile(`${__dirname}/dog-img.txt`, 'utf-8', (err, data) => {
+      if (err) {
+        console.log(err);
+        res.writeHead(500, { 'Content-Type': 'text/html' });
+        res.end('<h1>Internal Server Error</h1>');
+      } else {
+        const imgPath = data.trim();
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(`<img src='${imgPath}'/>`);
+      }
+    });
+    console.log('1: will get dog pics');
+    console.log('3: Done Getting dog pics');
+  } catch (err) {
+    console.log('Error 💥');
+  }
+})();
