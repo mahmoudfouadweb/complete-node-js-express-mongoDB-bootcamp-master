@@ -40,7 +40,7 @@ app.get('/api/v1/tours/:id', (req, res) => {
     return res.status(404).json({
       status: 'fail',
       data: {
-        message: 'Invaid Page Number'
+        message: 'Invalid page ID'
       }
     });
   }
@@ -70,6 +70,43 @@ app.post('/api/v1/tours', (req, res) => {
       });
     }
   );
+});
+
+// Handle PATCH request and make response
+app.patch('/api/v1/tours/:id', (req, res) => {
+  if (req.params.id * 1 > tours.length) {
+    return res.status(404).json({
+      status: 'fail',
+      data: {
+        message: 'Invalid page ID'
+      }
+    });
+  }
+
+  res.status(200).json({
+    status: 'succeess',
+    data: {
+      message: 'Update Done'
+    }
+  });
+});
+
+// Handle DELETE request and make response
+app.delete('/api/v1/tours/:id', (req, res) => {
+  const id = req.params.id * 1;
+  if (id > tours.length) {
+    res.status(404).json({
+      status: 'success',
+      data: {
+        message: 'Invalid page ID'
+      }
+    });
+  }
+
+  res.status(204).json({
+    status: 'success',
+    data: null
+  });
 });
 
 const port = 8000;
