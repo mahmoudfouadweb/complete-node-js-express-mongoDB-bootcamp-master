@@ -45,7 +45,7 @@ exports.updateUser = (req, res) => {
   const { name, email, role } = req.body;
   const { id } = req.params;
   const user = users.find(user => user._id === id);
-  if (!user) return errorHandlerPageNotFound();
+  if (!user) return errorHandlerPageNotFound(res);
   const updatedUser = users.map(el => {
     console.log('************** el', el);
     if (el._id === id) {

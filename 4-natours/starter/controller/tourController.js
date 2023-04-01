@@ -9,7 +9,7 @@ const results = tours.length;
 exports.checkId = (req, res, next, val) => {
   console.log(`Tour Id is : ${val}`);
   if (req.params.id * 1 > tours.lenght) return errorHandlerPageNotFound(res);
-  next();
+  next()
 };
 
 // Handle GET request and make response
