@@ -9,7 +9,23 @@ const results = tours.length;
 exports.checkId = (req, res, next, val) => {
   console.log(`Tour Id is : ${val}`);
   if (req.params.id * 1 > tours.lenght) return errorHandlerPageNotFound(res);
-  next()
+  next();
+};
+
+exports.checkBody = (req, res, next) => {
+  const { name, price } = req.body;
+  if (!name || !price) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'bad request'
+    });
+  } else {
+    return res.status(200).json({
+      status: 'success',
+      message: 'done'
+    });
+    next()
+  }
 };
 
 // Handle GET request and make response

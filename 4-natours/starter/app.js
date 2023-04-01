@@ -18,6 +18,7 @@ app.use((req, res, next) => {
   next();
 });
 
+
 // 3) ROUTS CELAN CODE
 app.use('/api/v1/tours', tourRouters);
 app.use('/api/v1/users', userRouters);
