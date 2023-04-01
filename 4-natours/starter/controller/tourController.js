@@ -3,9 +3,19 @@ const fs = require('fs');
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
 );
+
 const results = tours.length;
+
+exports.errorHandlerPageNotFound = (res) =>
+  res.status(404).json({
+    status: 'fail',
+    data: {
+      message: 'Invalid page ID'
+    }
+  });
+
 // Handle GET request and make response
-const allTours = (req, res) => {
+exports.allTours = (req, res) => {
   res.status(200).json({
     status: 'success',
     requistTime: req.requistTime,
@@ -17,19 +27,11 @@ const allTours = (req, res) => {
 };
 
 // Handle GET request and make response
-const getTour = (req, res) => {
+exports.getTour = (req, res) => {
   const id = req.params.id * 1;
   const tour = tours.find(el => el.id === id);
-
-  // if (id > tours.length) {
-  if (!tour) {
-    return res.status(404).json({
-      status: 'fail',
-      data: {
-        message: 'Invalid page ID'
-      }
-    });
-  }
+  // Error Handler
+  if (!tour) return errorHandlerPageNotFound();
 
   res.status(200).json({
     status: 'success me',
@@ -40,15 +42,8 @@ const getTour = (req, res) => {
 };
 
 // Handle PATCH request and make response
-const updateTour = (req, res) => {
-  if (req.params.id * 1 > tours.length) {
-    return res.status(404).json({
-      status: 'fail',
-      data: {
-        message: 'Invalid page ID'
-      }
-    });
-  }
+exports.updateTour = (req, res) => {
+  if (req.params.id * 1 > tours.length) return errorHandlerPageNotFound(res);
 
   res.status(200).json({
     status: 'succeess',
@@ -59,10 +54,11 @@ const updateTour = (req, res) => {
 };
 
 // Handle POST request and make response
-const creatNewTour = (req, res) => {
+exports.creatNewTour = (req, res) => {
   const newId = tours[tours.length - 1].id + 1;
   const newTour = Object.assign({ id: newId }, req.body);
   tours.push(newTour);
+
   fs.writeFile(
     `${__dirname}/dev-data/data/tours-simple.json`,
     JSON.stringify(tours),
@@ -78,16 +74,9 @@ const creatNewTour = (req, res) => {
 };
 
 // Handle DELETE request and make response
-const deleteTour = (req, res) => {
+exports.deleteTour = (req, res) => {
   const id = req.params.id * 1;
-  if (id > tours.length) {
-    res.status(404).json({
-      status: 'success',
-      data: {
-        message: 'Invalid page ID'
-      }
-    });
-  }
+  if (id > tours.length) return errorHandlerPageNotFound(res);
 
   res.status(204).json({
     status: 'success',

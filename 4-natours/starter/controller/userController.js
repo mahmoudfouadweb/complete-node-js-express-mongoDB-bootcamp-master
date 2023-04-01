@@ -1,13 +1,8 @@
 const fs = require('fs');
+const { errorHandlerPageNotFound } = require('./tourController');
 
 const users = JSON.parse(
-  fs.readFileSync(`./dev-data/data/users.json`, 'utf-8', err => {
-    if (err) {
-      console.log('ERROR >>>>>>>>>>', err);
-    } else {
-      console.log('Users loaded');
-    }
-  })
+  fs.readFileSync(`${__dirname}/../dev-data/data/users.json`, 'utf-8')
 );
 
 // GET ALL USERS
@@ -26,12 +21,7 @@ exports.allUsers = (req, res) => {
 exports.getUser = (req, res) => {
   const id = req.params.id;
   const user = users.find(user => user._id === id);
-  if (!user) {
-    res.status(500).json({
-      status: 'fail',
-      message: 'id not found'
-    });
-  }
+  if (!user) return errorHandlerPageNotFound(res);
   // console.log(user);
   res.status(200).json({
     status: 'success',
@@ -55,12 +45,7 @@ exports.updateUser = (req, res) => {
   const { name, email, role } = req.body;
   const { id } = req.params;
   const user = users.find(user => user._id === id);
-  if (!user) {
-    return res.status(500).json({
-      status: 'fail',
-      message: 'Server Internal Error'
-    });
-  }
+  if (!user) return errorHandlerPageNotFound();
   const updatedUser = users.map(el => {
     console.log('************** el', el);
     if (el._id === id) {
@@ -72,12 +57,7 @@ exports.updateUser = (req, res) => {
     `${__dirname}/dev-data/data/users.json`,
     JSON.stringify(updatedUser),
     err => {
-      if (err) {
-        return res.status(500).json({
-          status: 'fail',
-          message: 'Server Internal Error'
-        });
-      }
+      if (err) return errorHandlerPageNotFound(res);
     }
   );
 
@@ -95,12 +75,7 @@ exports.deleteUser = (req, res) => {
     `${__dirname}/../dev-data/data/users.json`,
     JSON.stringify(filteredUsers),
     err => {
-      if (err) {
-        return res.status(500).json({
-          status: 'fail',
-          message: 'Server Internal Error'
-        });
-      }
+      if (err) return errorHandlerPageNotFound(res);
     }
   );
 

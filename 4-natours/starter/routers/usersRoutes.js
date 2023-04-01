@@ -1,5 +1,4 @@
 const express = require('express');
-const router = express.Router();
 const {
   allUsers,
   creatNewUser,
@@ -7,6 +6,7 @@ const {
   updateUser,
   deleteUser
 } = require('./../controller/userController');
+const router = express.Router();
 
 router.route('/').get(allUsers).post(creatNewUser);
 router.route('/:id').get(getUser).patch(updateUser).delete(deleteUser);

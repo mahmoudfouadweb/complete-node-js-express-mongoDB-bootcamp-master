@@ -13,7 +13,6 @@ app.use((req, res, next) => {
   console.log('Hello from middleware 👋');
   next();
 });
-
 app.use((req, res, next) => {
   req.requistTime = new Date().toISOString();
   next();
@@ -29,10 +28,8 @@ app.use((err, req, res, next) => {
     status: 'error',
     data: { message: err.message || 'Internal Server Error' }
   });
+  next()
 });
 
-// 4) START THE SERVER
-const port = 8000;
-app.listen(port, () => {
-  console.log(`App Running on part ${port}`);
-});
+
+module.exports = app;
