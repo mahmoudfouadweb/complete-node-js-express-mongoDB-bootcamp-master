@@ -114,6 +114,71 @@ const deleteTour = (req, res) => {
   });
 };
 
+const users = JSON.parse(
+  fs.readFileSync(`./dev-data/data/users.json`, 'utf-8', err => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Users loaded');
+    }
+  })
+);
+// console.log(users);
+
+const allUsers = (req, res) => {
+  console.log(req.body);
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      message: 'success'
+    }
+  });
+};
+const getUser = (req, res) => {
+  const id = req.params.id * 1;
+  console.log(id);
+  const user = users.find(user => user.id === id);
+  if (!user) {
+    res.status(500).json({
+      status: 'fail',
+      message: 'id not found'
+    });
+  }
+  console.log(user);
+  res.status(200).json({
+    status: 'success',
+    lenght: users.length,
+    data: {
+      message: 'success'
+    }
+  });
+};
+const creatNewUser = (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    data: {
+      message: 'success'
+    }
+  });
+};
+const updateUser = (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    data: {
+      message: 'success'
+    }
+  });
+};
+const deleteUser = (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    data: {
+      message: 'success'
+    }
+  });
+};
+
 // 3) ROUTS
 // NOT A CLEAN CODE
 // app.get('/api/v1/tours', allTours);
@@ -129,6 +194,21 @@ app
   .get(getTour)
   .patch(updateTour)
   .delete(deleteTour);
+
+app.route('/api/v1/users').get(allUsers).post(creatNewUser);
+app
+  .route('/api/v1/users/:id')
+  .get(getUser)
+  .patch(updateUser)
+  .delete(deleteUser);
+
+// 4) ERROR HANDLING
+app.use((err, req, res, next) => {
+  res.status(500).json({
+    status: 'error',
+    data: { message: err.message || 'Internal Server Error' }
+  });
+});
 
 // 4) START THE SERVER
 const port = 8000;
