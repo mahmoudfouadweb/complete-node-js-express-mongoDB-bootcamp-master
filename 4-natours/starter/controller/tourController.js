@@ -24,7 +24,7 @@ exports.checkBody = (req, res, next) => {
       status: 'success',
       message: 'done'
     });
-    next()
+    next();
   }
 };
 

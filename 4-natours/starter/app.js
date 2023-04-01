@@ -18,19 +18,17 @@ app.use((req, res, next) => {
   next();
 });
 
-
-// 3) ROUTS CELAN CODE
+// 2) ROUTS *CELAN CODE*
 app.use('/api/v1/tours', tourRouters);
 app.use('/api/v1/users', userRouters);
 
-//3.5) ERROR HANDLING
+//3) ERROR HANDLING
 app.use((err, req, res, next) => {
   res.status(500).json({
     status: 'error',
     data: { message: err.message || 'Internal Server Error' }
   });
-  next()
+  next();
 });
-
 
 module.exports = app;
