@@ -117,29 +117,28 @@ const deleteTour = (req, res) => {
 const users = JSON.parse(
   fs.readFileSync(`./dev-data/data/users.json`, 'utf-8', err => {
     if (err) {
-      console.log(err);
+      console.log('ERROR >>>>>>>>>>', err);
     } else {
       console.log('Users loaded');
     }
   })
 );
-// console.log(users);
 
 // GET ALL USERS
 const allUsers = (req, res) => {
-  console.log(req.body);
-
+  const time = new Date().toISOString();
   res.status(200).json({
     status: 'success',
+    time,
+    userCount: users.length,
     data: {
-      message: req.body
+      message: users
     }
   });
 };
 // GET A USER
 const getUser = (req, res) => {
   const id = req.params.id;
-  console.log(id);
   const user = users.find(user => user._id === id);
   if (!user) {
     res.status(500).json({
@@ -147,7 +146,7 @@ const getUser = (req, res) => {
       message: 'id not found'
     });
   }
-  console.log(user);
+  // console.log(user);
   res.status(200).json({
     status: 'success',
     lenght: users.length,
@@ -165,11 +164,38 @@ const creatNewUser = (req, res) => {
 };
 // UPDATE A USER
 const updateUser = (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    data: {
-      message: 'success'
+  const { name, email, role } = req.body;
+  const { id } = req.params;
+  const user = users.find(user => user._id === id);
+  if (!user) {
+    return res.status(500).json({
+      status: 'fail',
+      message: 'Server Internal Error'
+    });
+  }
+  const updatedUser = users.map(el => {
+    console.log('************** el', el);
+    if (el._id === id) {
+      return { ...el, name, email, role };
     }
+    return el;
+  });
+  fs.writeFile(
+    `${__dirname}/dev-data/data/users.json`,
+    JSON.stringify(updatedUser),
+    err => {
+      if (err) {
+        return res.status(500).json({
+          status: 'fail',
+          message: 'Server Internal Error'
+        });
+      }
+    }
+  );
+
+  res.status(200).json({
+    status: 'Updated',
+    data: { ...users[user], name, email, role }
   });
 };
 // DELETE A USER
@@ -191,21 +217,19 @@ const deleteUser = (req, res) => {
 // app.delete('/api/v1/tours/:id', deleteTour);
 
 // 3) ROUTS CELAN CODE
-app.route('/api/v1/tours').get(allTours).post(creatNewTour);
-app
-  .route('/api/v1/tours/:id')
-  .get(getTour)
-  .patch(updateTour)
-  .delete(deleteTour);
+const tourRouters = express.Router();
+const usersRouters = express.Router();
 
-app.route('/api/v1/users').get(allUsers).post(creatNewUser);
-app
-  .route('/api/v1/users/:id')
-  .get(getUser)
-  .patch(updateUser)
-  .delete(deleteUser);
+tourRouters.route('/').get(allTours).post(creatNewTour);
+tourRouters.route('/:id').get(getTour).patch(updateTour).delete(deleteTour);
 
-// 4) ERROR HANDLING
+usersRouters.route('/').get(allUsers).post(creatNewUser);
+usersRouters.route('/:id').get(getUser).patch(updateUser).delete(deleteUser);
+
+app.use('/api/v1/tours', tourRouters);
+app.use('/api/v1/users', usersRouters);
+
+//3.5) ERROR HANDLING
 app.use((err, req, res, next) => {
   res.status(500).json({
     status: 'error',
