@@ -4,9 +4,13 @@ const {
   creatNewTour,
   getTour,
   updateTour,
-  deleteTour
+  deleteTour,
+  checkId
 } = require('./../controller/tourController');
+const tourConroller = require('./../controller/tourController');
 const router = express.Router();
+
+router.param('id', tourConroller, checkId);
 
 router.route('/').get(allTours).post(creatNewTour);
 router.route('/:id').get(getTour).patch(updateTour).delete(deleteTour);
