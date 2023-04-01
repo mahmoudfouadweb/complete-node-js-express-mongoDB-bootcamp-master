@@ -1,18 +1,15 @@
 const fs = require('fs');
-
+const { errorHandlerPageNotFound } = require('./errorController');
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
-);
-
-const results = tours.length;
-
-exports.errorHandlerPageNotFound = (res) =>
-  res.status(404).json({
-    status: 'fail',
-    data: {
-      message: 'Invalid page ID'
-    }
-  });
+  );
+  
+  const results = tours.length;
+  
+  exports.checkId = (req, res, next, val) => {
+    console.log(`Tour Id is : ${val}`);
+  return errorHandlerPageNotFound(res);
+};
 
 // Handle GET request and make response
 exports.allTours = (req, res) => {
@@ -31,7 +28,7 @@ exports.getTour = (req, res) => {
   const id = req.params.id * 1;
   const tour = tours.find(el => el.id === id);
   // Error Handler
-  if (!tour) return errorHandlerPageNotFound();
+  if (!tour) return errorHandlerPageNotFound(res);
 
   res.status(200).json({
     status: 'success me',
