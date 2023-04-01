@@ -125,20 +125,22 @@ const users = JSON.parse(
 );
 // console.log(users);
 
+// GET ALL USERS
 const allUsers = (req, res) => {
   console.log(req.body);
 
   res.status(200).json({
     status: 'success',
     data: {
-      message: 'success'
+      message: req.body
     }
   });
 };
+// GET A USER
 const getUser = (req, res) => {
-  const id = req.params.id * 1;
+  const id = req.params.id;
   console.log(id);
-  const user = users.find(user => user.id === id);
+  const user = users.find(user => user._id === id);
   if (!user) {
     res.status(500).json({
       status: 'fail',
@@ -149,11 +151,10 @@ const getUser = (req, res) => {
   res.status(200).json({
     status: 'success',
     lenght: users.length,
-    data: {
-      message: 'success'
-    }
+    user
   });
 };
+// CREATE A NEW USER
 const creatNewUser = (req, res) => {
   res.status(200).json({
     status: 'success',
@@ -162,6 +163,7 @@ const creatNewUser = (req, res) => {
     }
   });
 };
+// UPDATE A USER
 const updateUser = (req, res) => {
   res.status(200).json({
     status: 'success',
@@ -170,6 +172,7 @@ const updateUser = (req, res) => {
     }
   });
 };
+// DELETE A USER
 const deleteUser = (req, res) => {
   res.status(200).json({
     status: 'success',
