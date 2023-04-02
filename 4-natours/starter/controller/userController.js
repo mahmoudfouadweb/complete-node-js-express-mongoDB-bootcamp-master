@@ -19,8 +19,8 @@ exports.allUsers = (req, res) => {
 };
 // GET A USER
 exports.getUser = (req, res) => {
-  const id = req.params.id;
-  const user = users.find(user => user._id === id);
+  const { id } = req.params;
+  const user = users.find(singleUser => singleUser === id);
   if (!user) return errorHandlerPageNotFound(res);
   // console.log(user);
   res.status(200).json({
@@ -31,8 +31,7 @@ exports.getUser = (req, res) => {
 };
 // CREATE A NEW USER
 exports.creatNewUser = (req, res) => {
-  const newUser = req.body;
-  console.log(newUser);
+  // const newUser = req.body;
   res.status(200).json({
     status: 'success',
     data: {
@@ -44,10 +43,9 @@ exports.creatNewUser = (req, res) => {
 exports.updateUser = (req, res) => {
   const { name, email, role } = req.body;
   const { id } = req.params;
-  const user = users.find(user => user._id === id);
+  const user = users.find(singleUser => singleUser._id === id);
   if (!user) return errorHandlerPageNotFound(res);
   const updatedUser = users.map(el => {
-    console.log('************** el', el);
     if (el._id === id) {
       return { ...el, name, email, role };
     }
