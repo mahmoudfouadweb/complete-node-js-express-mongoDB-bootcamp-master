@@ -41,12 +41,12 @@ exports.getTour = async (req, res) => {
 // Handle POST request and make response
 exports.createTour = async (req, res) => {
   try {
-    const newTour = await Tour.create(req.body);
+    const tour = await Tour.create(req.body);
 
     res.status(201).json({
       status: 'success',
       data: {
-        tour: newTour
+        tour
       }
     });
   } catch (err) {
@@ -60,9 +60,16 @@ exports.createTour = async (req, res) => {
 // Handle PATCH request and make response
 exports.updateTour = async (req, res) => {
   try {
-    const { id } = req.body.id;
-    const updatedTour = await Tour.findByIdAndUpdate(id, req.body, {
-      new: true
+    const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true
+    });
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        tour
+      }
     });
   } catch (err) {
     res.status(400).json({
@@ -73,11 +80,12 @@ exports.updateTour = async (req, res) => {
 };
 
 // Handle DELETE request and make response
-exports.deleteTour = (req, res) => {
-  // if (id > tours.length) return errorHandlerPageNotFound(res);
-
-  res.status(204).json({
-    status: 'success',
-    data: null
-  });
+exports.deleteTour = async (req, res) => {
+  try {
+    await Tour.findByIdAndDelete(req.params.id);
+    res.status(204).json({
+      status: 'success',
+      data: null
+    });
+  } catch (err) {}
 };
