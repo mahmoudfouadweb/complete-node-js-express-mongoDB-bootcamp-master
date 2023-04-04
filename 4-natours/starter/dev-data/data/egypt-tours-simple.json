@@ -1,0 +1,411 @@
+[
+  {
+    "name": "Pyramids and Sphinx Tour",
+    "duration": 4,
+    "maxGroupSize": 10,
+    "difficulty": "easy",
+    "ratingAverage": 4.9,
+    "ratingQuantity": 20,
+    "price": 500,
+    "priceDiscount": 100,
+    "summary": "Discover the wonders of ancient Egypt on this tour that takes you to the Pyramids and Sphinx of Giza, the Egyptian Museum, and more!",
+    "description": "On this tour, you'll explore some of Egypt's most iconic landmarks and learn about the country's rich history and culture. You'll visit the Pyramids and Sphinx of Giza, explore the Egyptian Museum, and take a cruise down the Nile. Along the way, your expert guide will provide insights into the ancient world of the pharaohs.",
+    "imageCover": "https://example.com/pyramids.jpg",
+    "images": [
+      "https://example.com/giza.jpg",
+      "https://example.com/museum.jpg",
+      "https://example.com/nile.jpg"
+    ],
+    "startDate": "2023-06-15"
+  },
+  {
+    "name": "Luxor Temple and Karnak Tour",
+    "duration": 2,
+    "maxGroupSize": 12,
+    "difficulty": "moderate",
+    "ratingAverage": 4.7,
+    "ratingQuantity": 15,
+    "price": 300,
+    "summary": "Experience the beauty of ancient Egyptian temples on this tour of Luxor and Karnak.",
+    "description": "Luxor and Karnak are two of the most important temple complexes in Egypt, and on this tour, you'll have the opportunity to explore both. Marvel at the massive columns and intricate carvings, and learn about the religious significance of these ancient structures.",
+    "imageCover": "https://example.com/luxor.jpg",
+    "images": ["https://example.com/karnak.jpg"],
+    "startDate": "2023-07-01"
+  },
+  {
+    "name": "Nile River Cruise day",
+    "duration": 7,
+    "maxGroupSize": 20,
+    "difficulty": "easy",
+    "ratingAverage": 4.8,
+    "ratingQuantity": 25,
+    "price": 1200,
+    "priceDiscount": 200,
+    "summary": "Sail down the Nile River and discover the beauty of Egypt's landscape and history.",
+    "description": "This week-long cruise takes you from Aswan to Luxor, stopping at important sites like the Temple of Philae and the Valley of the Kings. Relax on deck and watch the scenery pass by, or join guided tours of each site to learn more about the history and culture of ancient Egypt.",
+    "imageCover": "https://example.com/nile-cruise.jpg",
+    "images": [
+      "https://example.com/philae.jpg",
+      "https://example.com/valley-of-kings.jpg"
+    ],
+    "startDate": "2023-08-10"
+  },
+  {
+    "name": "Luxor Temple and Valley of the Kings",
+    "duration": 3,
+    "maxGroupSize": 8,
+    "difficulty": "moderate",
+    "ratingAverage": 4.7,
+    "ratingQuantity": 12,
+    "price": 650,
+    "priceDiscount": 0,
+    "summary": "Explore the ancient city of Luxor and visit the Valley of the Kings, Karnak Temple, and more!",
+    "description": "Step back in time and discover the ancient wonders of Luxor on this unforgettable tour. You'll visit the famous Valley of the Kings, explore the Karnak Temple complex, and learn about the history of this fascinating city.",
+    "imageCover": "https://example.com/luxor.jpg",
+    "images": [
+      "https://example.com/valley.jpg",
+      "https://example.com/karnak.jpg",
+      "https://example.com/luxor-temple.jpg"
+    ],
+    "startDate": "2023-09-01"
+  },
+  {
+    "name": "Red Sea Diving Adventure",
+    "duration": 5,
+    "maxGroupSize": 6,
+    "difficulty": "difficult",
+    "ratingAverage": 4.8,
+    "ratingQuantity": 7,
+    "price": 1200,
+    "priceDiscount": 0,
+    "summary": "Experience the thrill of diving in the Red Sea and discover the amazing underwater world of Egypt!",
+    "description": "This tour is a must for anyone who loves diving. You'll explore some of the best dive sites in the Red Sea, including coral reefs, wrecks, and more. Along the way, you'll see an incredible array of marine life and make memories that will last a lifetime.",
+    "imageCover": "https://example.com/red-sea.jpg",
+    "images": [
+      "https://example.com/coral-reef.jpg",
+      "https://example.com/wreck.jpg",
+      "https://example.com/diver.jpg"
+    ],
+    "startDate": "2023-10-15"
+  },
+  {
+    "name": "Cairo and Alexandria Highlights",
+    "duration": 6,
+    "maxGroupSize": 12,
+    "difficulty": "easy",
+    "ratingAverage": 4.5,
+    "ratingQuantity": 18,
+    "price": 800,
+    "priceDiscount": 0,
+    "summary": "Discover the best of Cairo and Alexandria on this comprehensive tour that takes you to the Pyramids, the Citadel, the Library of Alexandria, and more!",
+    "description": "This tour is the perfect way to experience the best of Egypt's two biggest cities. You'll visit the Pyramids of Giza, explore the ancient Citadel, and discover the Library of Alexandria. Along the way, your expert guide will provide insights into the history and culture of these amazing cities.",
+    "imageCover": "https://example.com/cairo.jpg",
+    "images": [
+      "https://example.com/pyramids.jpg",
+      "https://example.com/citadel.jpg",
+      "https://example.com/library.jpg"
+    ],
+    "startDate": "2023-11-01"
+  },
+  {
+    "name": "Cairo and Luxor Tour",
+    "duration": 7,
+    "maxGroupSize": 12,
+    "difficulty": "moderate",
+    "ratingAverage": 4.8,
+    "ratingQuantity": 15,
+    "price": 800,
+    "priceDiscount": 0,
+    "summary": "Experience the best of Egypt on this week-long tour that takes you to Cairo, Luxor, and the Valley of the Kings.",
+    "description": "On this tour, you'll explore the bustling city of Cairo, visit the pyramids of Giza, and then head to Luxor to see the ancient temples and tombs of the pharaohs. You'll also cruise down the Nile and visit the Valley of the Kings.",
+    "imageCover": "https://example.com/cairo-luxor.jpg",
+    "images": [
+      "https://example.com/cairo.jpg",
+      "https://example.com/luxor.jpg",
+      "https://example.com/valley-of-the-kings.jpg"
+    ],
+    "startDate": "2023-09-01"
+  },
+  {
+    "name": "Red Sea Scuba Diving Tour",
+    "duration": 5,
+    "maxGroupSize": 8,
+    "difficulty": "difficult",
+    "ratingAverage": 4.9,
+    "ratingQuantity": 25,
+    "price": 1200,
+    "priceDiscount": 200,
+    "summary": "Explore the vibrant underwater world of the Red Sea on this scuba diving tour.",
+    "description": "This tour takes you to some of the best diving spots in the Red Sea, where you'll see colorful coral reefs, tropical fish, and maybe even dolphins and sharks. You'll also have time to relax on the beach and enjoy the warm, sunny weather.",
+    "imageCover": "https://example.com/red-sea.jpg",
+    "images": [
+      "https://example.com/diving-1.jpg",
+      "https://example.com/diving-2.jpg",
+      "https://example.com/beach.jpg"
+    ],
+    "startDate": "2023-11-15"
+  },
+  {
+    "name": "Nile River Cruise Tour",
+    "duration": 10,
+    "maxGroupSize": 20,
+    "difficulty": "easy",
+    "ratingAverage": 4.7,
+    "ratingQuantity": 10,
+    "price": 1500,
+    "priceDiscount": 0,
+    "summary": "Relax and unwind on a leisurely cruise down the Nile River.",
+    "description": "This tour takes you on a luxurious cruise down the Nile, where you'll see ancient temples, tombs, and monuments from the comfort of your own cabin. You'll also have plenty of time to relax on deck and enjoy the beautiful scenery as you sail past quaint villages and lush green landscapes.",
+    "imageCover": "https://example.com/nile-cruise.jpg",
+    "images": [
+      "https://example.com/nile-temple.jpg",
+      "https://example.com/nile-monument.jpg",
+      "https://example.com/nile-village.jpg"
+    ],
+    "startDate": "2024-02-01"
+  },
+  {
+    "name": "Red Sea Scuba Diving",
+    "duration": 5,
+    "maxGroupSize": 8,
+    "difficulty": "moderate",
+    "ratingAverage": 4.8,
+    "ratingQuantity": 15,
+    "price": 800,
+    "summary": "Explore the vibrant coral reefs and tropical marine life of the Red Sea on this unforgettable scuba diving adventure.",
+    "description": "On this tour, you'll spend five days diving in some of the Red Sea's most beautiful locations. You'll see an incredible variety of marine life, including colorful fish, sea turtles, and even dolphins. Whether you're an experienced diver or a beginner, this tour is an incredible way to experience the beauty of the underwater world.",
+    "imageCover": "https://example.com/redsea.jpg",
+    "images": [
+      "https://example.com/redsea1.jpg",
+      "https://example.com/redsea2.jpg",
+      "https://example.com/redsea3.jpg"
+    ],
+    "startDate": "2023-08-01"
+  },
+  {
+    "name": "Luxor and Valley of the Kings",
+    "duration": 3,
+    "maxGroupSize": 12,
+    "difficulty": "easy",
+    "ratingAverage": 4.5,
+    "ratingQuantity": 25,
+    "price": 350,
+    "summary": "Explore the ancient city of Luxor and the Valley of the Kings on this three-day tour of some of Egypt's most famous sites.",
+    "description": "This tour takes you on a journey back in time to the ancient city of Luxor, once the center of power in ancient Egypt. You'll visit the Valley of the Kings, where pharaohs and other powerful figures were buried, and explore the incredible temples of Karnak and Luxor. With a knowledgeable guide to lead the way, you'll gain insights into the history and culture of this fascinating civilization.",
+    "imageCover": "https://example.com/luxor.jpg",
+    "images": [
+      "https://example.com/karnak.jpg",
+      "https://example.com/valleyofkings.jpg",
+      "https://example.com/luxortemple.jpg"
+    ],
+    "startDate": "2023-07-01"
+  },
+  {
+    "name": "Nile River Cruise nights",
+    "duration": 7,
+    "maxGroupSize": 20,
+    "difficulty": "easy",
+    "ratingAverage": 4.7,
+    "ratingQuantity": 18,
+    "price": 1200,
+    "summary": "Sail down the Nile and explore ancient temples and tombs on this seven-day river cruise through Egypt.",
+    "description": "This tour takes you on a journey down the Nile, one of the world's most legendary rivers. You'll explore ancient temples and tombs, including the Temple of Karnak, the Temple of Edfu, and the Valley of the Kings. Along the way, you'll enjoy delicious Egyptian cuisine and soak up the stunning scenery of the river and the surrounding landscape.",
+    "imageCover": "https://example.com/nilecruise.jpg",
+    "images": [
+      "https://example.com/karnak2.jpg",
+      "https://example.com/templeofedfu.jpg",
+      "https://example.com/valleyofkings2.jpg"
+    ],
+    "startDate": "2023-09-01"
+  },
+  {
+    "name": "Quad Biking in the Desert",
+    "duration": 2,
+    "maxGroupSize": 10,
+    "difficulty": "easy",
+    "ratingAverage": 4.4,
+    "ratingQuantity": 10,
+    "price": 300,
+    "priceDiscount": 0,
+    "summary": "Experience the thrill of quad biking through the desert landscapes of Sharm El Sheikh",
+    "description": "Join us on this exciting quad biking adventure through the desert landscapes of Sharm El Sheikh. Our experienced guides will take you on an off-road journey through the rugged terrain, passing by Bedouin villages and scenic vistas. This tour is suitable for all ages and no prior experience is necessary.",
+    "imageCover": "https://example.com/quad.jpg",
+    "images": [
+      "https://example.com/desert1.jpg",
+      "https://example.com/desert2.jpg",
+      "https://example.com/quad2.jpg"
+    ],
+    "startDate": "2023-10-15"
+  },
+  {
+    "name": "St. Catherine's Monastery Tour",
+    "duration": 1,
+    "maxGroupSize": 12,
+    "difficulty": "easy",
+    "ratingAverage": 4.8,
+    "ratingQuantity": 5,
+    "price": 200,
+    "priceDiscount": 0,
+    "summary": "Discover the historic St. Catherine's Monastery on this guided tour from Sharm El Sheikh",
+    "description": "Join us on this day trip from Sharm El Sheikh to St. Catherine's Monastery, one of the oldest working Christian monasteries in the world. Located at the base of Mount Sinai, this UNESCO World Heritage Site boasts a rich history and stunning architecture. Our expert guide will take you through the monastery's impressive collections of icons, manuscripts, and other religious artifacts.",
+    "imageCover": "https://example.com/stcatherine.jpg",
+    "images": [
+      "https://example.com/monastery1.jpg",
+      "https://example.com/monastery2.jpg",
+      "https://example.com/icon.jpg"
+    ],
+    "startDate": "2023-11-20"
+  },
+  {
+    "name": "Quad Bike Adventure in the Desert",
+    "duration": 5,
+    "maxGroupSize": 6,
+    "difficulty": "moderate",
+    "ratingAverage": 4.5,
+    "ratingQuantity": 10,
+    "price": 300,
+    "priceDiscount": 0,
+    "summary": "Get ready for an adrenaline-fueled adventure as you ride a quad bike through the stunning desert landscape around Sharm El Sheikh.",
+    "description": "Experience the thrill of riding a powerful quad bike through the majestic desert scenery surrounding Sharm El Sheikh. You'll explore rugged terrain, traverse sand dunes, and enjoy breathtaking views of the mountains and valleys that make this region so unique. Along the way, your expert guide will lead you to hidden oases and other hidden gems of the desert.",
+    "imageCover": "https://example.com/quad-bike.jpg",
+    "images": [
+      "https://example.com/desert.jpg",
+      "https://example.com/sand-dunes.jpg",
+      "https://example.com/oasis.jpg"
+    ],
+    "startDate": "2023-11-15"
+  },
+  {
+    "name": "Luxury Spa and Wellness Retreat",
+    "duration": 7,
+    "maxGroupSize": 4,
+    "difficulty": "easy",
+    "ratingAverage": 4.9,
+    "ratingQuantity": 6,
+    "price": 2000,
+    "priceDiscount": 0,
+    "summary": "Indulge in a week of pampering and relaxation at one of Sharm El Sheikh's top luxury spas.",
+    "description": "Escape from the stresses of everyday life and treat yourself to a week of pure relaxation at one of Sharm El Sheikh's most luxurious spas. You'll enjoy a range of treatments and therapies, from massages and facials to yoga and meditation classes. You'll also have plenty of time to unwind by the pool or take a stroll along the pristine beaches of the Red Sea.",
+    "imageCover": "https://example.com/spa.jpg",
+    "images": [
+      "https://example.com/massage.jpg",
+      "https://example.com/pool.jpg",
+      "https://example.com/beach.jpg"
+    ],
+    "startDate": "2023-12-01"
+  },
+  {
+    "name": "Diving and Snorkeling Expedition",
+    "duration": 5,
+    "maxGroupSize": 8,
+    "difficulty": "medium",
+    "ratingAverage": 4.8,
+    "ratingQuantity": 12,
+    "price": 800,
+    "priceDiscount": null,
+    "summary": "Explore the underwater world of the Red Sea on this diving and snorkeling adventure in Sharm El Sheikh!",
+    "description": "On this tour, you'll have the opportunity to explore the stunning coral reefs and marine life of the Red Sea. You'll go on daily dives and snorkeling trips, with expert guides to help you navigate the waters and identify different species. You'll also have some free time to relax on the beach and enjoy the resort amenities.",
+    "imageCover": "https://example.com/diving.jpg",
+    "images": [
+      "https://example.com/reef1.jpg",
+      "https://example.com/reef2.jpg",
+      "https://example.com/reef3.jpg"
+    ],
+    "startDate": "2023-09-01"
+  },
+  {
+    "name": "Quad Biking and Safari",
+    "duration": 3,
+    "maxGroupSize": 12,
+    "difficulty": "easy",
+    "ratingAverage": 4.5,
+    "ratingQuantity": 8,
+    "price": 350,
+    "priceDiscount": null,
+    "summary": "Experience the thrill of the desert on this quad biking and desert safari tour in Sharm El Sheikh!",
+    "description": "On this tour, you'll explore the desert around Sharm El Sheikh on a quad bike, with an expert guide to lead the way. You'll also go on a desert safari, with a chance to see local wildlife and experience the unique landscape of the desert. You'll spend the evenings in a traditional Bedouin camp, with a campfire, dinner, and entertainment.",
+    "imageCover": "https://example.com/quad.jpg",
+    "images": [
+      "https://example.com/desert1.jpg",
+      "https://example.com/desert2.jpg",
+      "https://example.com/camp.jpg"
+    ],
+    "startDate": "2023-10-10"
+  },
+  {
+    "name": "Luxury Resort Getaway",
+    "duration": 7,
+    "maxGroupSize": 4,
+    "difficulty": "easy",
+    "ratingAverage": 4.9,
+    "ratingQuantity": 15,
+    "price": 1500,
+    "priceDiscount": 200,
+    "summary": "Indulge in luxury on this resort getaway in Sharm El Sheikh!",
+    "description": "On this tour, you'll stay in a luxurious resort in Sharm El Sheikh, with all-inclusive meals and access to resort amenities. You'll have plenty of free time to relax on the beach, swim in the pool, or indulge in spa treatments. You'll also have the option to go on guided tours of local attractions, such as the Old Town and the Ras Mohammed National Park.",
+    "imageCover": "https://example.com/resort.jpg",
+    "images": [
+      "https://example.com/beach.jpg",
+      "https://example.com/pool.jpg",
+      "https://example.com/spa.jpg"
+    ],
+    "startDate": "2023-11-20"
+  },
+  {
+    "name": "Sinai Mountain Hiking",
+    "duration": 6,
+    "maxGroupSize": 8,
+    "difficulty": "moderate",
+    "ratingAverage": 4.8,
+    "ratingQuantity": 15,
+    "price": 300,
+    "priceDiscount": 0,
+    "summary": "Hike to the summit of Mount Sinai and watch the sunrise from the top!",
+    "description": "On this tour, you'll hike to the top of Mount Sinai, one of the most sacred mountains in the world. At the summit, you'll watch the sunrise over the Sinai Peninsula and enjoy stunning views of the surrounding landscape. Along the way, you'll learn about the history and significance of the mountain from your expert guide.",
+    "imageCover": "https://example.com/sinai.jpg",
+    "images": [
+      "https://example.com/sinai1.jpg",
+      "https://example.com/sinai2.jpg",
+      "https://example.com/sinai3.jpg"
+    ],
+    "startDate": "2023-09-01"
+  },
+  {
+    "name": "Camel Safari Adventure",
+    "duration": 3,
+    "maxGroupSize": 12,
+    "difficulty": "easy",
+    "ratingAverage": 4.5,
+    "ratingQuantity": 10,
+    "price": 150,
+    "priceDiscount": 0,
+    "summary": "Explore the desert on a traditional camel safari!",
+    "description": "On this tour, you'll ride a camel through the desert and experience the beauty of the Egyptian landscape. You'll visit a traditional Bedouin village, enjoy a delicious dinner, and watch a live performance of Bedouin music and dance. Your guide will provide insights into Bedouin culture and way of life.",
+    "imageCover": "https://example.com/camel.jpg",
+    "images": [
+      "https://example.com/camel1.jpg",
+      "https://example.com/camel2.jpg",
+      "https://example.com/camel3.jpg"
+    ],
+    "startDate": "2023-11-01"
+  },
+  {
+    "name": "Red Sea Snorkeling Tour",
+    "duration": 2,
+    "maxGroupSize": 10,
+    "difficulty": "easy",
+    "ratingAverage": 4.9,
+    "ratingQuantity": 25,
+    "price": 100,
+    "priceDiscount": 0,
+    "summary": "Discover the stunning underwater world of the Red Sea on a snorkeling tour!",
+    "description": "On this tour, you'll explore the crystal-clear waters of the Red Sea and discover its colorful coral reefs and exotic marine life. You'll snorkel at some of the best sites in the region and have the opportunity to see dolphins, sea turtles, and a variety of tropical fish. Your guide will provide all the necessary equipment and ensure your safety throughout the tour.",
+    "imageCover": "https://example.com/redsea.jpg",
+    "images": [
+      "https://example.com/redsea1.jpg",
+      "https://example.com/redsea2.jpg",
+      "https://example.com/redsea3.jpg"
+    ],
+    "startDate": "2023-10-15"
+  }
+]

@@ -22,7 +22,7 @@ mongoose
 
 // Read Json file
 const tours = JSON.parse(
-  fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf8', err => {
+  fs.readFileSync(`${__dirname}/egypt-tours-simple.json`, 'utf8', err => {
     console.log(err);
   })
 );
@@ -30,10 +30,10 @@ const tours = JSON.parse(
 // IMPORT ALL TOURS INTO DB
 const importData = async () => {
   try {
-    Tour.create(tours);
-    process.exit();
+    await Tour.create(tours);
 
     console.log('Tours created!');
+    process.exit();
   } catch (err) {
     console.log(err);
   }
@@ -43,9 +43,9 @@ const importData = async () => {
 const deleteData = async () => {
   try {
     await Tour.deleteMany({});
-    process.exit();
 
     console.log('Tours deleted!');
+    process.exit();
   } catch (err) {
     console.log(err);
   }
