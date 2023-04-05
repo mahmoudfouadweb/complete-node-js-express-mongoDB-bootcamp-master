@@ -5,20 +5,39 @@ const Tour = require('../models/tourModels');
 exports.getAllTours = async (req, res) => {
   try {
     // BUILD QUERY
-    // 1) Filtering
+    // 1A) Filtering
     const queryObj = { ...req.query };
-    const exludedFields = ['limit', 'page', 'sort'];
+    const exludedFields = ['limit', 'page', 'sort', 'field'];
     exludedFields.forEach(field => delete queryObj[field]);
-    // 2) Advanced filtering
+    // 1B) Advanced filtering
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(
       /\b(gt|gte|lt|lte|in)\b/g,
       match => `$${match}`
     );
-    // GET /api/tours?search= - 200 ok - empty array with no message. 	// search term is case insensitive. 	//
-
-    // 3) Sorting
-    const query = Tour.find(JSON.parse(queryStr));
+    console.log('queryStr :>> ', queryStr);
+    console.log('queryObj :>> ', queryObj);
+    console.log('req.query :>> ', req.query);
+    // 2) Sorting
+    let query = Tour.find(JSON.parse(queryStr));
+    if (req.query.sort) {
+      // if sort is specified, sort the results by that field.
+      const sortedBy = req.query.sort.split(',').join(' ');
+      query = query.sort(sortedBy); // sort is a function.
+    } else {
+      // if no sort is specified, sort the results by the creation time.
+      query = query.sort('-createdAt');
+    }
+    // 3) Limit the number of fields returned.
+    if (req.query.field) {
+      // if field is specified, limit the number of fields returned.
+      const fields = req.query.field.split(',').join(' ');
+      console.log('fields :>> ', fields);
+      query = query.select(fields);
+    } else {
+      // if no field is specified, limit the number of fields returned. 	  // (default to all fields) 	  query = query
+      query = query.select('-__v'); // select all fields, except __v. 	  }
+    }
 
     // excute query
     const tours = await query;
