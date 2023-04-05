@@ -1,6 +1,7 @@
 const Tour = require('../models/tourModels');
 
 // Handle GET request and make response
+// getAllTours: Retrieve all the user's Tours from the database.
 exports.getAllTours = async (req, res) => {
   try {
     // BUILD QUERY
@@ -14,6 +15,7 @@ exports.getAllTours = async (req, res) => {
       /\b(gt|gte|lt|lte|in)\b/g,
       match => `$${match}`
     );
+    // GET /api/tours?search= - 200 ok - empty array with no message. 	// search term is case insensitive. 	//
 
     // 3) Sorting
     const query = Tour.find(JSON.parse(queryStr));
@@ -77,6 +79,7 @@ exports.createTour = async (req, res) => {
 };
 
 // Handle PATCH request and make response
+// PATCH /api/tours/:id - 200 ok - full details of the tour with the given id, with updated details posted as JSON.
 exports.updateTour = async (req, res) => {
   try {
     const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
