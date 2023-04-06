@@ -5,24 +5,27 @@ const {
   createTour,
   getTour,
   updateTour,
-  deleteTour
+  deleteTour,
+  aliasTopTours
 } = require('./../controller/tourController');
 
 // 2) create router Method
 const router = express.Router();
 
 // 3) register routes and pass in the router as a paramter to access the routes in other files
+router.route('/top-5-cheap').get(aliasTopTours, getAllTours);
+
 router
   .route('/')
   .get(getAllTours) // e.g. app.get('/api/tours', getAllTours);
-  .post(createTour); // e.g. app.post('/api/tours', createTour); 	// e.g
+  .post(createTour); // e.g. app.post('/api/tours', createTour);
 // -------------------------Tour specific routes--------------------------//
 // 4) register the tour specific routes with the respective function in the controller file.
 
 router
   .route('/:id')
-  .get(getTour) // e.g. app.get('/api/tours/:id', getTour); 	//
-  .patch(updateTour) // e.g. app.put('/api/tours/:id', updateTour); 	//
-  .delete(deleteTour); // e.g. app.delete('/api/tours/:id', deleteTour); 	//
+  .get(getTour) // e.g. app.get('/api/tours/:id', getTour);
+  .patch(updateTour) // e.g. app.put('/api/tours/:id', updateTour);
+  .delete(deleteTour); // e.g. app.delete('/api/tours/:id', deleteTour);
 
 module.exports = router;

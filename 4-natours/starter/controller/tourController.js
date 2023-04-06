@@ -1,25 +1,30 @@
 const Tour = require('../models/tourModels');
 
 // Handle GET request and make response
+exports.aliasTopTours = (req, res, next) => {
+  req.query.limit = '5';
+  req.query.sort = '-ratingAverage,price';
+  req.query.field = 'name,price,description,difficulty,ratingAverage,';
+  next();
+};
 // getAllTours: Retrieve all the user's Tours from the database.
 exports.getAllTours = async (req, res) => {
   try {
-    // BUILD QUERY
-    // 1A) Filtering
+    /* ----------------------------- // BUILD QUERY // ----------------------------- */
+    /* ----------------------------  1A) Filtering ---------------------------- */
     const queryObj = { ...req.query };
-    const exludedFields = ['limit', 'page', 'sort', 'field'];
+    const exludedFields = ['limit', 'page', 'sort'];
     exludedFields.forEach(field => delete queryObj[field]);
-    // 1B) Advanced filtering
+    /* ------------------------  1B) Advanced filtering ----------------------- */
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(
       /\b(gt|gte|lt|lte|in)\b/g,
       match => `$${match}`
     );
-    console.log('queryStr :>> ', queryStr);
-    console.log('queryObj :>> ', queryObj);
-    console.log('req.query :>> ', req.query);
-    // 2) Sorting
-    let query = Tour.find(JSON.parse(queryStr));
+
+    /* ------------------------------  2) Sorting ----------------------------- */
+    const queryParse = JSON.parse(queryStr);
+    let query = Tour.find(queryParse);
     if (req.query.sort) {
       // if sort is specified, sort the results by that field.
       const sortedBy = req.query.sort.split(',').join(' ');
@@ -28,20 +33,31 @@ exports.getAllTours = async (req, res) => {
       // if no sort is specified, sort the results by the creation time.
       query = query.sort('-createdAt');
     }
-    // 3) Limit the number of fields returned.
+
+    /* ---------------  3) Limit the number of fields returned. --------------- */
     if (req.query.field) {
       // if field is specified, limit the number of fields returned.
       const fields = req.query.field.split(',').join(' ');
-      console.log('fields :>> ', fields);
       query = query.select(fields);
     } else {
-      // if no field is specified, limit the number of fields returned. 	  // (default to all fields) 	  query = query
-      query = query.select('-__v'); // select all fields, except __v. 	  }
+      // if no field is specified, limit the number of fields returned.
+      query = query.select('-__v'); // select all fields, except __v.
     }
 
-    // excute query
-    const tours = await query;
+    /* ------------------------------ 4) pagination ----------------------------- */
+    if (req.query.page && req.query.limit) {
+      const page = req.query.page * 1 || 1;
+      const limit = req.query.limit * 1 || 10; // default to 10.
+      const skip = (page - 1) * limit; // skip the number of records.
 
+      query = query.skip(skip).limit(limit); // skip and limit the number of records.
+
+      const numTours = await Tour.countDocuments(); // count the number of records
+      if (skip >= numTours) throw new Error('This Page is not exist 404');
+    }
+
+    /* ------------------------------ (Finaly) excute query ------------------------------ */
+    const tours = await query;
     console.log('A tours are loaded');
 
     // send response
@@ -52,8 +68,8 @@ exports.getAllTours = async (req, res) => {
     });
   } catch (err) {
     res.status(400).json({
-      status: 'error',
-      message: err
+      status: 'fail',
+      message: err.message
     });
   }
 };
@@ -98,7 +114,6 @@ exports.createTour = async (req, res) => {
 };
 
 // Handle PATCH request and make response
-// PATCH /api/tours/:id - 200 ok - full details of the tour with the given id, with updated details posted as JSON.
 exports.updateTour = async (req, res) => {
   try {
     const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
