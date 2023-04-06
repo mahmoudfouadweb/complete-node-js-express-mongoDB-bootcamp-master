@@ -6,7 +6,8 @@ const {
   getTour,
   updateTour,
   deleteTour,
-  aliasTopTours
+  aliasTopTours,
+  getTourStats
 } = require('./../controller/tourController');
 
 // 2) create router Method
@@ -14,6 +15,7 @@ const router = express.Router();
 
 // 3) register routes and pass in the router as a paramter to access the routes in other files
 router.route('/top-5-cheap').get(aliasTopTours, getAllTours);
+router.route('/tour-stats').get(getTourStats);
 
 router
   .route('/')
