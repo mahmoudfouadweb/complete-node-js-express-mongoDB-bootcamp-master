@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const userRouters = require('./routers/usersRoutes');
 const tourRouters = require('./routers/toursRoutes');
 
+/* -------------------------- Express JS Begin here ------------------------- */
 const app = express();
 
 // 1) MIDDLEWARES third party app
