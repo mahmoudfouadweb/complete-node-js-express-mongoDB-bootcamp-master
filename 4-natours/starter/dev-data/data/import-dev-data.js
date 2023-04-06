@@ -22,7 +22,7 @@ mongoose
 
 // Read Json file
 const tours = JSON.parse(
-  fs.readFileSync(`${__dirname}/egypt-tours-simple.json`, 'utf8', err => {
+  fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf8', err => {
     console.log(err);
   })
 );
