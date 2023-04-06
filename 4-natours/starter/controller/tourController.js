@@ -1,63 +1,22 @@
 const Tour = require('../models/tourModels');
+const APIFeatures = require('./../util/apiFeatures');
 
 // Handle GET request and make response
 exports.aliasTopTours = (req, res, next) => {
   req.query.limit = '5';
-  req.query.sort = '-ratingAverage,price';
-  req.query.field = 'name,price,description,difficulty,ratingAverage,';
+  req.query.sort = 'price,ratingAverage';
+  req.query.fields = 'name,price,ratingAverage,summary,difficulty';
   next();
 };
 // getAllTours: Retrieve all the user's Tours from the database.
 exports.getAllTours = async (req, res) => {
   try {
-    /* ----------------------------- // BUILD QUERY // ----------------------------- */
-    /* ----------------------------  1A) Filtering ---------------------------- */
-    const queryObj = { ...req.query };
-    const exludedFields = ['limit', 'page', 'sort'];
-    exludedFields.forEach(field => delete queryObj[field]);
-    /* ------------------------  1B) Advanced filtering ----------------------- */
-    let queryStr = JSON.stringify(queryObj);
-    queryStr = queryStr.replace(
-      /\b(gt|gte|lt|lte|in)\b/g,
-      match => `$${match}`
-    );
-
-    /* ------------------------------  2) Sorting ----------------------------- */
-    const queryParse = JSON.parse(queryStr);
-    let query = Tour.find(queryParse);
-    if (req.query.sort) {
-      // if sort is specified, sort the results by that field.
-      const sortedBy = req.query.sort.split(',').join(' ');
-      query = query.sort(sortedBy); // sort is a function.
-    } else {
-      // if no sort is specified, sort the results by the creation time.
-      query = query.sort('-createdAt');
-    }
-
-    /* ---------------  3) Limit the number of fields returned. --------------- */
-    if (req.query.field) {
-      // if field is specified, limit the number of fields returned.
-      const fields = req.query.field.split(',').join(' ');
-      query = query.select(fields);
-    } else {
-      // if no field is specified, limit the number of fields returned.
-      query = query.select('-__v'); // select all fields, except __v.
-    }
-
-    /* ------------------------------ 4) pagination ----------------------------- */
-    if (req.query.page && req.query.limit) {
-      const page = req.query.page * 1 || 1;
-      const limit = req.query.limit * 1 || 10; // default to 10.
-      const skip = (page - 1) * limit; // skip the number of records.
-
-      query = query.skip(skip).limit(limit); // skip and limit the number of records.
-
-      const numTours = await Tour.countDocuments(); // count the number of records
-      if (skip >= numTours) throw new Error('This Page is not exist 404');
-    }
-
-    /* ------------------------------ (Finaly) excute query ------------------------------ */
-    const tours = await query;
+    const features = new APIFeatures(Tour.find(), req.query)
+      .filter()
+      .sort()
+      .limit()
+      .paginat();
+    const tours = await features.query;
     console.log('A tours are loaded');
 
     // send response
