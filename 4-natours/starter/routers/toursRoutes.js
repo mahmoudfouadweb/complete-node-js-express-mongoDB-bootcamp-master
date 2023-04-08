@@ -8,8 +8,7 @@ const {
   deleteTour,
   aliasTopTours,
   getTourStats,
-  getMonthlyPlan,
-  getBigWeek
+  getMonthlyPlan
 } = require('./../controller/tourController');
 
 // 2) create router Method
@@ -19,7 +18,6 @@ const router = express.Router();
 router.route('/top-5-cheap').get(aliasTopTours, getAllTours);
 router.route('/tour-stats').get(getTourStats);
 router.route('/monthly-plan/:year').get(getMonthlyPlan);
-router.route('/big-week').get(getBigWeek);
 
 router
   .route('/')

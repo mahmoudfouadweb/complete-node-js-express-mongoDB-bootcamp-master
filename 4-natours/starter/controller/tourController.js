@@ -146,27 +146,7 @@ exports.getTourStats = async (req, res) => {
   }
 };
 
-exports.getBigWeek = async (req, res) => {
-  try {
-    const weeks = await Tour.aggregate([
-      {
-        $sort: { $durationWeeks: -1 }
-      }
-    ]);
 
-    res.status(200).json({
-      status: 'success',
-      data: {
-        weeks
-      }
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err
-    });
-  }
-};
 
 exports.getMonthlyPlan = async (req, res) => {
   try {
