@@ -11,6 +11,7 @@ exports.aliasTopTours = (req, res, next) => {
 // getAllTours: Retrieve all the user's Tours from the database.
 exports.getAllTours = async (req, res) => {
   try {
+//     EXECUTE QUERY
     const features = new APIFeatures(Tour.find(), req.query)
       .filter()
       .sort()
