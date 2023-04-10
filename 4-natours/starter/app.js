@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const userRouters = require('./routers/usersRoutes');
 const tourRouters = require('./routers/toursRoutes');
 const AppError = require('./util/appError');
+const errorHandler = require('./controller/errorController');
 
 /* -------------------------- Express JS Begin here ------------------------- */
 const app = express();
@@ -28,16 +29,6 @@ app.all('*', (req, res, next) =>
 );
 
 //3) ERROR HANDLING
-app.use((err, req, res, next) => {
-  // ERROR HANDLING FOR ALL ROUTES!!! NOT THE ONE THAT FAILS THE FIRST
-  err.statusCode = err.statuscode || 500;
-  err.status = err.status || 'error';
-
-  res.status(err.statusCode).json({
-    // JSON FORMATTING FOR SERVER ERRORS
-    status: err.status,
-    message: err.message
-  });
-});
+app.use(errorHandler);
 
 module.exports = app;

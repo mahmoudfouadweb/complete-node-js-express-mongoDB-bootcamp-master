@@ -8,10 +8,15 @@ exports.aliasTopTours = (req, res, next) => {
   req.query.fields = 'name,price,ratingAverage,summary,difficulty';
   next();
 };
+
+const asynCatch = fn => {
+  fn(req, res, next).catch(err => next(err));
+};
+
 // getAllTours: Retrieve all the user's Tours from the database.
 exports.getAllTours = async (req, res) => {
   try {
-//     EXECUTE QUERY
+    // EXECUTE QUERY
     const features = new APIFeatures(Tour.find(), req.query)
       .filter()
       .sort()
@@ -55,23 +60,16 @@ exports.getTour = async (req, res) => {
 };
 
 // Handle POST request and make response
-exports.createTour = async (req, res) => {
-  try {
-    const tour = await Tour.create(req.body);
+exports.createTour = asynCatch(async (req, res) => {
+  const tour = await Tour.create(req.body);
 
-    res.status(201).json({
-      status: 'success',
-      data: {
-        tour
-      }
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err
-    });
-  }
-};
+  res.status(201).json({
+    status: 'success',
+    data: {
+      tour
+    }
+  });
+});
 
 // Handle PATCH request and make response
 exports.updateTour = async (req, res) => {
