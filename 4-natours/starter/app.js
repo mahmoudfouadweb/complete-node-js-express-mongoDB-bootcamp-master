@@ -23,13 +23,28 @@ app.use((req, res, next) => {
 app.use('/api/v1/tours', tourRouters);
 app.use('/api/v1/users', userRouters);
 
+app.all('*', (req, res, next) => {
+  // res.status(404).send({
+  //   staus: 'fail',
+  //   message: `Can't find ${req.originalUrl} on this server`
+  // });
+  const err = new Error(`Can't find ${req.originalUrl} on this server`);
+  err.status = 404; // set the error status code to 404 (Not Found)
+  err.statusCode = 'fail';
+  next(err);
+});
+
 //3) ERROR HANDLING
 app.use((err, req, res, next) => {
-  res.status(500).json({
-    status: 'error',
-    data: { message: err.message || 'Internal Server Error' }
+  // ERROR HANDLING FOR ALL ROUTES!!! NOT THE ONE THAT FAILS THE FIRST
+  err.statusCode = err.statuscode || 500;
+  err.status = err.status || 'error';
+
+  res.status(err.statusCode).json({
+    // JSON FORMATTING FOR SERVER ERRORS
+    status: err.status,
+    message: err.message
   });
-  next();
 });
 
 module.exports = app;
