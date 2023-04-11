@@ -1,5 +1,6 @@
 const Tour = require('../models/tourModels');
 const APIFeatures = require('./../util/apiFeatures');
+const catchAsync = require('./../util/catchAsync');
 
 // Handle GET request and make response
 exports.aliasTopTours = (req, res, next) => {
@@ -7,10 +8,6 @@ exports.aliasTopTours = (req, res, next) => {
   req.query.sort = 'price,ratingAverage';
   req.query.fields = 'name,price,ratingAverage,summary,difficulty';
   next();
-};
-
-const asynCatch = fn => {
-  fn(req, res, next).catch(err => next(err));
 };
 
 // getAllTours: Retrieve all the user's Tours from the database.
@@ -60,7 +57,7 @@ exports.getTour = async (req, res) => {
 };
 
 // Handle POST request and make response
-exports.createTour = asynCatch(async (req, res) => {
+exports.createTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.create(req.body);
 
   res.status(201).json({
