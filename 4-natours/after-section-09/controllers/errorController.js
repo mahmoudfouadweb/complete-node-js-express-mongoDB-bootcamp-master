@@ -35,7 +35,6 @@ const sendErrorProd = (err, res) => {
       status: err.status,
       message: err.message
     });
-
     // Programming or other unknown error: don't leak error details
   } else {
     // 1) Log error
