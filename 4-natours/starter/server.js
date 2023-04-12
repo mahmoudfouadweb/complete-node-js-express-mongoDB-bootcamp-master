@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 
 // 2) set dotenv file and app function
 dotenv.config({ path: './config.env' });
-console.log(process.env.NODE_ENV);
+console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 const app = require('./app');
 
 // 3) connect to mongodb server and run app on port 3000

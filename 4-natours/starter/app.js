@@ -1,10 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
 
-const userRouters = require('./routers/usersRoutes');
-const tourRouters = require('./routers/toursRoutes');
 const AppError = require('./util/appError');
-const errorHandler = require('./controller/errorController');
+const globalErrorHandler = require('./controller/errorController');
+const tourRouters = require('./routers/toursRoutes');
+const userRouters = require('./routers/usersRoutes');
 
 /* -------------------------- Express JS Begin here ------------------------- */
 const app = express();
@@ -29,6 +29,6 @@ app.all('*', (req, res, next) =>
 );
 
 //3) ERROR HANDLING
-app.use(errorHandler);
+app.use(globalErrorHandler);
 
 module.exports = app;
