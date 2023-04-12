@@ -8,7 +8,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "prod": "NODE_ENV=production nodemon server.js",
+    "prod": "set NODE_ENV=production&& nodemon server.js",
     "debug": "ndb server.js"
   },
   "author": "Jonas Schmedtmann",
